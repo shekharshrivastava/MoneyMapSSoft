@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/account_stmt"
+            android:title="Account Statement" />
+
+        <item
+            android:id="@+id/bills"
+            android:icon="@drawable/bill_icon"
+            android:title="Bills" />
+
+        <item
+            android:id="@+id/sms"
+            android:icon="@drawable/transaction_sms"
+            android:title="Transaction sms" />
+
+        <item
+            android:id="@+id/spends"
+            android:icon="@drawable/spend_summary_chart"
+            android:title="Spend Summary" />
+
+
+
+
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/new_about"
+            android:title="About" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_error_black"
+            android:title="Logout"
+            app:showAsAction="always|withText"/>
+
+
+    </group>
+</menu>
