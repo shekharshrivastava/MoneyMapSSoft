@@ -212,7 +212,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mSpendAmountDisplay = (TextView) findViewById(R.id.spendAmountDisplay);
 
         String TITLES[] = {"Notification", "Settings", "Help", "Info"};
-        int ICONS[] = {R.drawable.notifications_drawer, R.drawable.settings_drawer, R.drawable.help_drawer, R.drawable.info_drawer};
+        int ICONS[] = {R.drawable.notification_new, R.drawable.setting_new, R.drawable.help_new, R.drawable.info_new};
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 
         mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
