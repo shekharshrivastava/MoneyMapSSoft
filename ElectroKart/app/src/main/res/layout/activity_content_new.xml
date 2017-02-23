@@ -103,7 +103,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/spentRL"
+            android:id="@+id/spentRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/budgetRL">
@@ -190,7 +190,7 @@
             android:id="@+id/TotalRL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spentRL">
+            android:layout_below="@+id/spentRelativeLayout">
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fabTotal"

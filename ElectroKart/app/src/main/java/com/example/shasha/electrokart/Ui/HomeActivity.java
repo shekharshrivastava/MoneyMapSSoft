@@ -47,6 +47,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -135,6 +136,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView budgetAddBtn;
     private TextView latestTransactionMoney;
     private TextView totalSpendArea;
+    private RelativeLayout spentLayout;
 
 
     @Override
@@ -274,7 +276,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         latestTransactionMoney = (TextView) findViewById(R.id.latestTransactionMoney);
         latestTransactionMoney.setText(getLatestTransactionValue());
 
-        totalSpendArea = (TextView)findViewById(R.id.totalSpendArea);
+        totalSpendArea = (TextView) findViewById(R.id.totalSpendArea);
 
 //        showSpentData = (ImageView) findViewById(R.id.showSpentData);
 //        showSpentData.setOnClickListener(this);
@@ -435,11 +437,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        if(mTransactionAdapter.getItemCount()>0) {
+        if (mTransactionAdapter.getItemCount() > 0) {
             totalSpendArea.setText("Total Spend Areas " + "(" + mTransactionAdapter.getItemCount() + ")");
-        }else{
+        } else {
             totalSpendArea.setText("Total Spend Areas ");
         }
+
+        spentLayout = (RelativeLayout) findViewById(R.id.spentRelativeLayout);
+        spentLayout.setOnClickListener(this);
     }
 
     private void getUserThumbnail() {
@@ -744,7 +749,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
 */
-
+            case R.id.spentRelativeLayout:
+                Intent intent = new Intent(this,SpendSummaryActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -784,10 +792,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         calculateRemainingCash(Budget, mSpendBudget);
         getWriteFromDB();
         getSpendArea();
-        latestTransactionMoney.setText(getLatestTransactionValue()+"/- ");
-        if(mTransactionAdapter.getItemCount()>0) {
+        latestTransactionMoney.setText(getLatestTransactionValue() + "/- ");
+        if (mTransactionAdapter.getItemCount() > 0) {
             totalSpendArea.setText("Total Spend Areas " + "(" + mTransactionAdapter.getItemCount() + ")");
-        }else{
+        } else {
             totalSpendArea.setText("Total Spend Areas ");
         }
 //        getUserThumbnail();
