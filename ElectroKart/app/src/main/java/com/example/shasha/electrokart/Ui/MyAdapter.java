@@ -66,7 +66,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                             v.getContext().startActivity(intent);
                             break;
                         case 3:
-                            Toast.makeText(v.getContext(), "" + getPosition(), Toast.LENGTH_LONG).show();
+                            Intent feedBackIntent = new Intent(v.getContext(),FeedBackActivity.class);
+                            v.getContext().startActivity(feedBackIntent);
                             break;
                         case 4:
                             Intent infoIntent = new Intent(v.getContext(),AboutActivity.class);

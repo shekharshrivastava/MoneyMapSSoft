@@ -136,13 +136,13 @@
 
 
     <string-array name="nav_drawer_items">
-        <item >Account statement</item>
-        <item >Bills</item>
-        <item >Transaction sms</item>
-        <item >Spend summary </item>
-        <item >Settings</item>
-        <item >About</item>
-        <item >Logout</item>
+        <item>Account statement</item>
+        <item>Bills</item>
+        <item>Transaction sms</item>
+        <item>Spend summary </item>
+        <item>Settings</item>
+        <item>About</item>
+        <item>Logout</item>
 
     </string-array>
 

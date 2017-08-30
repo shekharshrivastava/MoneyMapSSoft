@@ -213,7 +213,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
         mSpendAmountDisplay = (TextView) findViewById(R.id.spendAmountDisplay);
 
-        String TITLES[] = {"Notification", "Settings", "Help", "Info"};
+        String TITLES[] = {"Notification", "Settings", "Feedback", "Info"};
         int ICONS[] = {R.drawable.notification_new, R.drawable.setting_new, R.drawable.help_new, R.drawable.info_new};
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 

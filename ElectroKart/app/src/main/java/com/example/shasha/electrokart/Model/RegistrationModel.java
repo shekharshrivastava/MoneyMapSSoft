@@ -27,7 +27,7 @@ public class RegistrationModel {
     {
 
     }
-    private RegistrationModel(String userName, String userNumber, String password, String emailId, String loginDate) {
+    public RegistrationModel(String userName, String userNumber, String password, String emailId, String loginDate) {
         this.userName = userName;
         this.userNumber = userNumber;
         this.password = password;
