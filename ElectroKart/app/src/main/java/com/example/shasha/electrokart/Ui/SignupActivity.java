@@ -4,11 +4,7 @@ package com.example.shasha.electrokart.Ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,13 +17,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.shasha.electrokart.Controller.RegistrationController;
 import com.example.shasha.electrokart.Model.LoginModel;
+import com.example.shasha.electrokart.Model.RegistrationModel;
 import com.example.shasha.electrokart.R;
 import com.example.shasha.electrokart.Utils.PasswordEncryption;
-import com.example.shasha.electrokart.Model.RegistrationModel;
 import com.example.shasha.electrokart.Utils.UIHelper;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -40,15 +35,15 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.sdsmdg.tastytoast.TastyToast;
 
-
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
@@ -101,7 +96,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         helper = new UIHelper();
 
         textInputName = (TextView) findViewById(R.id.textInputName);
-        inputTextEmail = (TextView)findViewById(R.id.inputTextEmail);
+        inputTextEmail = (TextView) findViewById(R.id.inputTextEmail);
 //        TextInputLayout textInputNumber = (TextInputLayout) findViewById(R.id.textInputNumber);
         textInputPassword = (TextView) findViewById(R.id.inputTextPassword);
         editEmailId = (EditText) findViewById(R.id.editEmailId);
@@ -225,13 +220,23 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean validateEmail() {
-        if (editEmailId.getText().toString().trim().isEmpty()) {
-            inputTextEmail.setText("*Email field can't be empty");
-            return false;
-        } else {
-            inputTextEmail.setText("");
+        boolean isValidEmail = false;
+        if (null != editEmailId.getText().toString().trim() && !editEmailId.getText().toString().trim().isEmpty()) {
+            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(editEmailId.getText().toString().trim());
+            if (!matcher.matches()) {
+                inputTextEmail.setText("*Email not valid");
+                isValidEmail =  false;
+            } else {
+                inputTextEmail.setText("");
+                isValidEmail = true;
+
+
+            }
+
         }
-        return true;
+        return isValidEmail;
     }
 
     private boolean validatePassword() {
@@ -268,7 +273,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             LoginModel.getInstance().setUserName(userName);
             LoginModel.getInstance().setUserNumber(userPhoneNumber);
             LoginModel.getInstance().setEmailId(UserEmailId);
-        }else{
+        } else {
             LoginModel.getInstance().setUserName(mfirstName + " " + mLastName);
             LoginModel.getInstance().setEmailId(mUserEmail);
         }
@@ -293,7 +298,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
             } else {
                 isPasswordMatch = false;
-                helper.generateToast(getApplicationContext(), "Password does'nt match", TastyToast.LENGTH_LONG,TastyToast.INFO);
+                helper.generateToast(getApplicationContext(), "Password does'nt match", TastyToast.LENGTH_LONG, TastyToast.INFO);
 //                Toast.makeText(this, "Password does'nt match", Toast.LENGTH_SHORT).show();
             }
         }
@@ -301,12 +306,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         if (!(validateEmail())) {
             return;
         } else {
-            if (UserEmailId.contains("@") && (!TextUtils.isEmpty(UserEmailId))) {
                 RegistrationModel.getInstance().setEmailId(UserEmailId);
-            } else {
-                RegistrationModel.getInstance().setEmailId(mUserEmail);
-            }
-
         }
         if (!validateName()) {
             return;
